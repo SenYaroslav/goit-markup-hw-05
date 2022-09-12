@@ -30,6 +30,9 @@ img {
   --primary-background-color: #ffffff;
   --secondary-background-color: #2f303a;
   --third-background-color: #f5f5f5;
+  /* Transition settings*/
+  --transition-duration: 250ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -62,6 +65,10 @@ body {
   font-size: 26px;
   line-height: 1.2;
   text-decoration: none;
+
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .header-logo .logo-accent {
@@ -121,10 +128,28 @@ body {
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-decoration: none;
+
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+
 }
 
 .site-nav .link.current {
+  position: relative;
   color: var(--accent-color);
+}
+
+.link.current::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-color);
 }
 
 .contacts .contact {
@@ -132,6 +157,11 @@ body {
   align-items: center;
 
   color: var(--text-color);
+
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+
 }
 
 .contact > .icon.envelope {
@@ -158,6 +188,62 @@ body {
 }
 
 /* Hero */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform:  scale(1);
+  transition-duration: 250ms;
+  transform-origin: top center;
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  transform:  scale(0);
+  transition-duration: 250ms;
+  transform-origin: top center;
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 528px;
+  min-height: 581px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal-btn .icon {
+  width: 11px;
+  height: 11px;
+}
 
 .hero {
   padding-top: 200px;
@@ -196,8 +282,11 @@ body {
   line-height: 1.88;
   text-align: center;
   letter-spacing: 0.06em;
-
   cursor: pointer;
+
+  transition-property: background-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 .button:hover,
 .button:focus {
@@ -303,12 +392,28 @@ body {
 }
 
 .works .item {
+  position: relative;
   width: 370px;
   margin-left: 30px;
 }
 
 .works .item:nth-child(1) {
   margin-left: 0;
+}
+
+.works .descr {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 27px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: rgba(47, 48, 58, 0.8);;
 }
 
 /* Team */
@@ -375,6 +480,10 @@ body {
   height: 44px;
   border-radius: 50%;
   color: #afb1b8;
+
+  transition-property: background-color, color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .icon-link:hover,
@@ -402,6 +511,11 @@ body {
   border: 1px solid #afb1b8;
   border-radius: 4px;
   color: #afb1b8;
+
+  transition-property: border-color, color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+
 }
 
 .client-link:hover,
@@ -433,6 +547,10 @@ body {
   font-size: 26px;
   line-height: 1.19;
   text-decoration: none;
+
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .footer-logo .logo-accent {
@@ -460,6 +578,10 @@ body {
   color: var(--primary-background-color);
   text-decoration: none;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .footer-mail,
@@ -467,6 +589,10 @@ body {
   display: block;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
+
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .footer-address:hover,
@@ -513,6 +639,10 @@ body {
   border-radius: 50%;
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
+
+  transition-property: background-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .icon-link:hover,
@@ -551,6 +681,10 @@ body {
   font-size: 16px;
   line-height: 1.62;
   font-family: inherit;
+
+  transition-property: background-color, color, box-shadow;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .filter:hover,
@@ -560,6 +694,42 @@ body {
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
   cursor: pointer;
+}
+
+.card-thumd {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  
+  transition-property: transform;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.card-link:hover .card-overlay {
+  transform: translateY(0%);
+}
+
+.card-actions {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  padding: 63px 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #fff;
 }
 
 .cards.flex {
@@ -608,6 +778,11 @@ body {
 .card-link {
   display: block;
   text-decoration: none;
+
+  transition-property: box-shadow;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+
 }
 
 .card-link:hover,
